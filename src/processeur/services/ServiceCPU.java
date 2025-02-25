@@ -17,18 +17,18 @@ public class ServiceCPU {
     /**
      * Constantes indiquant le nombre maximum de CPUs que peut contenir notre liste.
      */
-    // VOTRE CODE ICI...
+    public static final int NBRE_CPU;
 
     /**
      * Attribut contenant le tableau des CPUs.
      */
-    // VOTRE CODE ICI...
+    private cpus CPU[];
 
     /**
      * Attribut contenant la référence au contrôleur de l'application MVC
      * "Processeur".
      */
-    // VOTRE CODE ICI...
+    Controller refCtrl = new Controller;
 
     /**
      * Constructeur de la classe ServiceCPU. Les attributs de la classe ServiceCPU
