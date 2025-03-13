@@ -17,25 +17,26 @@ public class ServiceCPU {
     /**
      * Constantes indiquant le nombre maximum de CPUs que peut contenir notre liste.
      */
-    // VOTRE CODE ICI...
+    public static final int NBRE_CPU = 20;
 
     /**
      * Attribut contenant le tableau des CPUs.
      */
-    // VOTRE CODE ICI...
+    private CPU tableauCPU[];
 
     /**
      * Attribut contenant la référence au contrôleur de l'application MVC
      * "Processeur".
      */
-    // VOTRE CODE ICI...
+    private Controller refCtrl;
 
     /**
      * Constructeur de la classe ServiceCPU. Les attributs de la classe ServiceCPU
      * sont initialisés.
      */
-    public ServiceCPU() {
-        // VOTRE CODE ICI...
+    public ServiceCPU(CPU[] tableauCPU, Controller refCtrl) {
+        this.tableauCPU = (tableauCPU != null) ? tableauCPU : new CPU[NBRE_CPU];
+        this.refCtrl = refCtrl;
     }
 
     /**
@@ -43,12 +44,20 @@ public class ServiceCPU {
      * étant un tableau de taille fixe, au bout d'un moment celui-ci sera plein et
      * ne pourra donc plus accueillir de nouveau objets. Cette méthode indique
      * par sa valeur de retour si elle a réussi à faire le travail demandé.
-     * 
+     *
      * @param cpu le nouveau CPU à stocker dans notre liste
      * @return vrai si une place libre a été trouvée dans notre liste de cpus
      */
     public boolean ajouterUnNouveau(CPU cpu) {
-        // VOTRE CODE ICI...
+        boolean ajoutReussi = false;
+        for (int i = 0; i < NBRE_CPU; i++) {
+            if (tableauCPU[i] == null) {
+                tableauCPU[i] = cpu;
+                ajoutReussi = true;
+                break;
+            }
+        }
+        return ajoutReussi;
     }
 
     /**
@@ -57,7 +66,23 @@ public class ServiceCPU {
      * @return la liste des CPUs
      */
     public CPU[] obtenirLaListe() {
-        // VOTRE CODE ICI...
+        int count = 0;
+        int index = 0;
+        for (int i = 0; i < tableauCPU.length; i++) {
+            if (tableauCPU[i] != null) {
+                count++;
+            }
+        }
+        CPU[] liste = new CPU[count];
+
+        for (CPU cpu : tableauCPU) {
+            if (cpu != null) {
+                liste[index++] = cpu;
+            }
+        }
+
+        return liste;
+
     }
 
     /**
@@ -67,7 +92,13 @@ public class ServiceCPU {
      * @return le nombre de CPUs contenus dans notre liste
      */
     public int nombreDeCPUDansLaListe() {
-        // VOTRE CODE ICI...
+        int compteur = 0;
+        for (int i = 0; i < tableauCPU.length; i++) {
+            if (tableauCPU[i] != null) {
+                compteur++;
+            }
+        }
+        return compteur;
     }
 
     /**
@@ -78,19 +109,24 @@ public class ServiceCPU {
      * @return la taille de la liste de CPU
      */
     public int tailleDeLaListe() {
-        // VOTRE CODE ICI...
+        return tableauCPU.length;
     }
 
     /**
      * Cette méthode permet d'obtenir un CPU de notre liste en fonction de son
      * indice.
-     * 
+     *
      * @param indice l'indice du CPU à obtenir se trouvant dans notre tableau
      * @return CPU le CPU demandé ou null si l'indice ne se trouve pas dans les
      *         limites du tableau
      */
     public CPU obtenirUnElement(int indice) {
-        // VOTRE CODE ICI...
+        if (indice > 0 && indice < tableauCPU.length) {
+            if (tableauCPU[indice] != null) {
+                return tableauCPU[indice];
+            }
+        }
+        return null;
     }
 
     /**
@@ -99,7 +135,7 @@ public class ServiceCPU {
      * @return la référence au contrôleur de l'application MVC "Processeur"
      */
     public Controller getRefCtrl() {
-        // VOTRE CODE ICI...
+        return refCtrl;
     }
 
     /**
@@ -108,7 +144,6 @@ public class ServiceCPU {
      * @param refCtrl référence au contrôleur de l'application MVC "Processeur"
      */
     public void setRefCtrl(Controller refCtrl) {
-        // VOTRE CODE ICI...
+        this.refCtrl = refCtrl;
     }
-
 }
