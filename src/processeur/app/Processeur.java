@@ -1,5 +1,6 @@
 package processeur.app;
 
+import processeur.models.CPU;
 import processeur.ctrl.Controller;
 import processeur.services.ServiceCPU;
 import processeur.views.View;
@@ -20,7 +21,13 @@ public class Processeur {
      * @param args les arguments du programme passés sur la ligne de commande
      */
     public static void main(String[] args ) {
-        // VOTRE CODE ICI...
+    Controller ctrl = new Controller(null, null);
+    ServiceCPU service = new ServiceCPU(new CPU[ServiceCPU.NBRE_CPU], ctrl);
+    View view = new View();
+    ctrl.setRefServiceCPU(service);
+    ctrl.setRefView(view);
+    view.setRefCtrl(ctrl);
+    ctrl.start();
     }
 
 }

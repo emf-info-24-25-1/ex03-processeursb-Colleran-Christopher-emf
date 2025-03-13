@@ -29,8 +29,9 @@ public class Controller {
      * Constructeur de la classe Controller. Les attributs de la classe Controller
      * sont initialisés à null.
      */
-    public Controller() {
-
+    public Controller(View refView, ServiceCPU refServiceCPU) {
+        this.refView = null;
+        this.refServiceCPU = null;
     }
 
     /**
@@ -95,7 +96,7 @@ public class Controller {
      * @param refView référence à la vue de l'application MVC "Processeur"
      */
     public void setRefView(View refView) {
-        
+        this.refView = refView;
     }
 
     /**
@@ -104,7 +105,7 @@ public class Controller {
      * @return la référence au service CPU de l'application MVC "Processeur"
      */
     public ServiceCPU getRefServiceCPU() {
-        // VOTRE CODE ICI...
+        return refServiceCPU;
     }
 
     /**
@@ -114,7 +115,7 @@ public class Controller {
      *                      "Processeur"
      */
     public void setRefServiceCPU(ServiceCPU refServiceCPU) {
-        // VOTRE CODE ICI...
+        this.refServiceCPU = refServiceCPU;
     }
 
 }
